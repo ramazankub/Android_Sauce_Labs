@@ -10,9 +10,14 @@ import pages.LoginPage;
 
 public class BaseTest {
 
+    private AndroidDriver androidDriver;
+
     public void openApp() {
-        AndroidDriver androidDriver = AndroidDriverFactory.createDriver();
-        WebDriverRunner.setWebDriver(androidDriver);
+        androidDriver = AndroidDriverFactory.createDriver();
+
+        if (androidDriver != null) {
+            WebDriverRunner.setWebDriver(androidDriver);
+        }
     }
 
     @BeforeEach
@@ -22,6 +27,10 @@ public class BaseTest {
 
     @AfterEach
     public void quit() {
-        WebDriverRunner.closeWebDriver();
+
+        if (androidDriver != null) {
+            androidDriver.quit();
+            WebDriverRunner.closeWebDriver();
+        }
     }
 }
