@@ -10,6 +10,7 @@ build/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea
 *.iws
 *.iml
 *.ipr
@@ -39,5 +40,33 @@ bin/
 ### VS Code ###
 .vscode/
 
-### Mac OS ###
+### macOS ###
 .DS_Store
+
+
+# ===============================
+# MOBILE AUTOMATION (APPIUM/ANDROID)
+# ===============================
+
+# Do not commit local Android SDK paths
+local.properties
+
+# Do not commit APK/IPA binaries (keeps repo lightweight)
+app/*.apk
+app/*.ipa
+
+# Appium server logs
+appium.log
+*.trace
+
+# Selenide reports, logs, screenshots
+selenide-screenshots/
+selenide-logs/
+build/reports/tests/
+
+# Temporary folders
+tmp/
+temp/
+
+# If Node.js tools are used (Appium Doctor, UI tools, etc.)
+node_modules/

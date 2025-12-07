@@ -12,12 +12,14 @@ public class AndroidDriverFactory {
         public static AndroidDriver createDriver() {
             try {
                 Properties properties = new Properties();
-                properties.load(new FileInputStream("capabilities/android.properties"));
+                properties.load(AndroidDriverFactory.class.getClassLoader().getResourceAsStream("capabilities/android.properties"));
+
 
                 UiAutomator2Options uiAutomator2Options = new UiAutomator2Options()
                         .setPlatformName(properties.getProperty("platformName"))
                         .setAutomationName(properties.getProperty("automationName"))
-                        .setApp(properties.getProperty("app"))
+                        .setAppPackage(properties.getProperty("appPackage"))
+                        .setAppActivity(properties.getProperty("appActivity"))
                         .setAutoGrantPermissions(Boolean.parseBoolean(properties.getProperty("autoGrantPermissions")))
                         .setPlatformVersion(properties.getProperty("platformVersion"))
                         .setFullReset(Boolean.parseBoolean(properties.getProperty("fullReset")));
