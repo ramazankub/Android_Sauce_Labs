@@ -13,7 +13,7 @@ import utils.NavigationUiHelper;
 import java.util.stream.Stream;
 
 public class LoginTest extends BaseTest{
-    private static LoginPage loginPage = new LoginPage();
+    private LoginPage loginPage = new LoginPage();
     private MainPage mainPage = new MainPage();
     private NavigationUiHelper navigationUiHelper = new NavigationUiHelper();
     private Credentials credentials = new Credentials();
@@ -28,14 +28,14 @@ public class LoginTest extends BaseTest{
     @Test
     public void incorrectLogin() {
         loginPage.login(credentials.INCORRECT_LOGIN, credentials.INCORRECT_PASSWORD);
-        navigationUiHelper.checkTextVisible(appMessages.INCORRECT_DATA_ERROR);
+        navigationUiHelper.checkTextVisible(AppMessages.INCORRECT_DATA_ERROR);
     }
 
     @ParameterizedTest
     @MethodSource("invalidUsers")
     void loginWithInvalidDataShowsError(String username, String password) {
         loginPage.login(username, password);
-        navigationUiHelper.checkTextVisible(appMessages.INCORRECT_DATA_ERROR);
+        navigationUiHelper.checkTextVisible(AppMessages.INCORRECT_DATA_ERROR);
     }
 
     private static Stream<Arguments> invalidUsers() {
