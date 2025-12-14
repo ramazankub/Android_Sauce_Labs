@@ -3,7 +3,6 @@ package drivers;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 
-import java.io.FileInputStream;
 import java.net.URL;
 import java.util.Properties;
 
