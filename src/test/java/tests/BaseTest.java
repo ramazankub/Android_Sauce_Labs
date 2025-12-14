@@ -5,8 +5,6 @@ import drivers.AndroidDriverFactory;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.TestInfo;
-import pages.LoginPage;
 
 public class BaseTest {
 

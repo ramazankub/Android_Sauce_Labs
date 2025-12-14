@@ -10,10 +10,7 @@ import testData.AppMessages;
 import testData.Credentials;
 import utils.NavigationUiHelper;
 
-import java.time.Duration;
 import java.util.stream.Stream;
-
-import static com.codeborne.selenide.Condition.visible;
 
 public class LoginTest extends BaseTest{
     private static LoginPage loginPage = new LoginPage();
@@ -25,7 +22,7 @@ public class LoginTest extends BaseTest{
    @Test
     public void successLogin() {
         loginPage.login(Credentials.FIRST_USER, Credentials.CORRECT_PASSWORD);
-        mainPage.burgerMenu.shouldBe(visible, Duration.ofSeconds(4));
+        navigationUiHelper.checkElementVisible(mainPage.burgerMenu);
     }
 
     @Test
@@ -46,5 +43,11 @@ public class LoginTest extends BaseTest{
                 Arguments.of(Credentials.INCORRECT_LOGIN, Credentials.INCORRECT_PASSWORD),
                 Arguments.of(Credentials.FIRST_USER, Credentials.INCORRECT_PASSWORD)
         );
+    }
+
+    @Test
+    public void loginByPressCreds() {
+        loginPage.pasteCredentialsByPress(loginPage.credsListTitle, Credentials.FIRST_USER, Credentials.CORRECT_PASSWORD);
+        navigationUiHelper.checkElementVisible(mainPage.burgerMenu);
     }
 }
