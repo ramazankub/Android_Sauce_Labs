@@ -9,7 +9,7 @@ on:
 
 jobs:
   android-tests:
-    name: Run Android UI Tests
+    name: Android CI Validation
     runs-on: ubuntu-latest
 
     steps:
@@ -25,10 +25,10 @@ jobs:
       - name: Grant execute permission for Gradle
         run: chmod +x ./gradlew
 
-      - name: Build project
+      - name: Build project (without UI tests)
         run: ./gradlew clean build -x test
 
-      - name: Run tests
+      - name: Run tests (CI validation)
         run: ./gradlew test
         continue-on-error: true
 
@@ -45,3 +45,17 @@ jobs:
         with:
           name: allure-results
           path: build/allure-results
+
+      - name: Send Telegram notification
+        if: always()
+        run: |
+          STATUS="${{ job.status }}"
+          MESSAGE="📱 Android CI finished
+          Repository: ${{ github.repository }}
+          Branch: ${{ github.ref_name }}
+          Status: ${STATUS}
+          Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
+            -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
+            -d text="$MESSAGE"
