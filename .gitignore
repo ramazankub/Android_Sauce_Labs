@@ -13,6 +13,12 @@ local.properties
 .idea/libraries/
 .idea/gradle.xml
 .idea/misc.xml
+.idea/AndroidProjectSystem.xml
+.idea/caches/
+.idea/deviceManager.xml
+.idea/migrations.xml
+.idea/runConfigurations.xml
+.idea/vcs.xml
 *.iws
 *.iml
 *.ipr
