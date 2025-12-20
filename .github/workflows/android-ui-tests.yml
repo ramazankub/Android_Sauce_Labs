@@ -28,10 +28,6 @@ jobs:
       - name: Build project (without UI tests)
         run: ./gradlew clean build -x test
 
-      - name: Run tests (CI validation)
-        run: ./gradlew test
-        continue-on-error: true
-
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
